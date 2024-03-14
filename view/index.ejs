@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <form action="/save" method="post" enctype="multipart/form-data">
+      <input
+        type="text"
+        name="maSanPham"
+        id="maSanPham"
+        placeholder="Ma san pham"
+      />
+      <br />
+      <input
+        type="text"
+        name="tenSanPham"
+        id="tenSanPham"
+        placeholder="Ten san pham"
+      />
+      <br />
+      <input type="text" name="soLuong" id="soLuong" placeholder="So Luong" />
+      <br />
+      <input type="file" name="image" id="image" accept="image/*" />
+      <br />
+      <input type="submit" value="Them" />
+    </form>
+
+    <form action="/delete" method="post" enctype="multipart/form-data">
+      <table>
+        <tr>
+          <th>Ma San Pham</th>
+          <th>Ten San Pham</th>
+          <th>So Luong</th>
+          <th>Hinh anh</th>
+          <th>Select</th>
+        </tr>
+        <% for(let i = 0 ; i< data.length; i++){%>
+        <tr>
+          <td><%= data[i].id %></td>
+          <td><%= data[i].tenSanPham %></td>
+          <td><%= data[i].soLuong %></td>
+          <td>
+            <img
+              src=" <%= data[i].image %>"
+              alt="avt_<%= data[i].tenSanPham %>"
+              width="48"
+              height="48"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              name="<%=data[i].id%>"
+              id="<%=data[i].id%>"
+            />
+          </td>
+        </tr>
+
+        <% } %>
+      </table>
+      <input type="submit" value="Xoa" />
+    </form>
+  </body>
+</html>
